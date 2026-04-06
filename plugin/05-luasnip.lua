@@ -1,8 +1,10 @@
-vim.pack.add({ "https://github.com/L3MON4D3/LuaSnip" })
+vim.pack.add({ "https://github.com/L3MON4D3/LuaSnip" }, { load = function() end })
 
 vim.api.nvim_create_autocmd("InsertEnter", {
 	once = true,
 	callback = function()
+		vim.cmd.packadd("LuaSnip")
+
 		require("luasnip.loaders.from_snipmate").lazy_load({
 			paths = { vim.fn.stdpath("config") .. "/snippets" },
 		})
