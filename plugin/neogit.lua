@@ -1,7 +1,9 @@
-vim.pack.add({ "https://github.com/neogitorg/neogit" })
+vim.pack.add({ "https://github.com/neogitorg/neogit" }, { load = function() end })
 
 vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
 	callback = function()
+		vim.cmd.packadd("neogit")
 		require("neogit").setup({
 			{
 				kind = "vsplit",

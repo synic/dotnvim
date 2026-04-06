@@ -7,7 +7,7 @@ vim.pack.add({
 	"https://github.com/moyiz/blink-emoji.nvim",
 	"https://github.com/edte/blink-go-import.nvim",
 	"https://github.com/saghen/blink.compat",
-})
+}, { load = function() end })
 
 local include_filetypes = { "AvanteInput" }
 local include_buftypes = {}
@@ -15,7 +15,12 @@ local disabled_buftypes = { "prompt", "nofile" }
 local disabled_filetypes = { "DressingInput" }
 
 vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
 	callback = function()
+		vim.cmd.packadd("blink.cmp")
+		vim.cmd.packadd("blink-emoji.nvim")
+		vim.cmd.packadd("blink-go-import.nvim")
+		vim.cmd.packadd("blink.compat")
 		local b = require("blink.cmp")
 		vim.lsp.config["*"].capabilities.completion = b.get_lsp_capabilities()["completion"]
 

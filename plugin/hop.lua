@@ -1,9 +1,11 @@
 local target_keys = "asdfghjkletovxpzwciubrnym;,ASDFGHJKLETOVXPZWCIUBRNYM"
 
-vim.pack.add({ "https://github.com/smoka7/hop.nvim" })
+vim.pack.add({ "https://github.com/smoka7/hop.nvim" }, { load = function() end })
 
 vim.api.nvim_create_autocmd("VimEnter", {
+	once = true,
 	callback = function()
+		vim.cmd.packadd("hop.nvim")
 		require("hop").setup({
 			keys = target_keys,
 			quit_key = "q",

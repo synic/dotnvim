@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" })
+vim.pack.add({ "https://github.com/lewis6991/gitsigns.nvim" }, { load = function() end })
 
 local function gitsigns_on_attach(bufnr)
 	local gs = package.loaded.gitsigns
@@ -52,8 +52,10 @@ local function gitsigns_on_attach(bufnr)
 	})
 end
 
-vim.api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd("BufReadPost", {
+	once = true,
 	callback = function()
+		vim.cmd.packadd("gitsigns.nvim")
 		require("gitsigns").setup({
 			signs = {
 				add = { text = "▎" },

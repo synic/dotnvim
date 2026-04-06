@@ -1,8 +1,10 @@
-vim.pack.add({ "https://github.com/j-hui/fidget.nvim" })
+vim.pack.add({ "https://github.com/j-hui/fidget.nvim" }, { load = function() end })
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("FidgetSetup", { clear = true }),
+	once = true,
 	callback = function()
+		vim.cmd.packadd("fidget.nvim")
 		require("fidget").setup({
 			notification = { window = { winblend = 20 } },
 			progress = {
