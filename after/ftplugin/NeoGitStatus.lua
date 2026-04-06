@@ -62,6 +62,7 @@ end
 
 -- Create buffer-local autocmd for focus events
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	group = vim.api.nvim_create_augroup("NeoGitStatusFtplugin", { clear = true }),
 	buffer = 0,
 	callback = function()
 		local git_root = vim.fs.root(0, ".git")

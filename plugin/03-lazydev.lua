@@ -1,6 +1,7 @@
 vim.pack.add({ "https://github.com/folke/lazydev.nvim" })
 
 vim.api.nvim_create_autocmd("FileType", {
+	group = vim.api.nvim_create_augroup("LazydevSetup", { clear = true }),
 	pattern = { "lua" },
 	callback = function()
 		require("lazydev").setup({

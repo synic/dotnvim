@@ -5,7 +5,10 @@ vim.pack.add({
 	"https://github.com/windwp/nvim-ts-autotag",
 })
 
+local treesitter_group = vim.api.nvim_create_augroup("TreesitterSetup", { clear = true })
+
 vim.api.nvim_create_autocmd("FileType", {
+	group = treesitter_group,
 	pattern = "*",
 	callback = function()
 		pcall(vim.treesitter.start)
@@ -13,6 +16,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("PackChanged", {
+	group = treesitter_group,
 	callback = function(ev)
 		local name, kind = ev.data.spec.name, ev.data.kind
 		if name == "nvim-treesitter" and kind == "update" then

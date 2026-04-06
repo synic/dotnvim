@@ -33,7 +33,10 @@ if vim.fn.has("nvim-0.11") then
 	vim.deprecate = function() end
 end
 
+local user_config_group = vim.api.nvim_create_augroup("UserConfig", { clear = true })
+
 vim.api.nvim_create_autocmd("FileType", {
+	group = user_config_group,
 	pattern = "qf",
 	callback = function()
 		vim.cmd("wincmd J")
@@ -43,6 +46,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Create the autocmd group and command
 ---@type integer
 vim.api.nvim_create_autocmd("TermOpen", {
+	group = user_config_group,
 	pattern = "*",
 	callback = function()
 		vim.opt_local.number = false

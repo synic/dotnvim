@@ -23,6 +23,7 @@ function M.open_gitblame()
 	end
 
 	vim.api.nvim_create_autocmd("FileType", {
+		group = vim.api.nvim_create_augroup("UserScm", { clear = true }),
 		pattern = "gitsigns-blame",
 		callback = function()
 			vim.api.nvim_create_autocmd("WinClosed", {

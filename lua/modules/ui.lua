@@ -2,7 +2,6 @@
 local proj = require("modules.project")
 
 local notification_width = 70
-local clear_winbar_group = vim.api.nvim_create_augroup("WinBarHlClearBg", { clear = true })
 
 ---@type PluginModule
 local M = {}
@@ -352,7 +351,7 @@ M.plugins = {
 			clear_winbar_bg()
 
 			vim.api.nvim_create_autocmd("ColorScheme", {
-				group = clear_winbar_group,
+				group = "WinBarHlClearBg",
 				callback = clear_winbar_bg,
 			})
 
