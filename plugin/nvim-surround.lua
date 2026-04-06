@@ -1,4 +1,7 @@
-vim.pack.add({ { src = "https://github.com/kylechui/nvim-surround", version = vim.version.range("3") } }, { load = function() end })
+vim.pack.add(
+	{ { src = "https://github.com/kylechui/nvim-surround", version = vim.version.range("3") } },
+	{ load = function() end }
+)
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	once = true,

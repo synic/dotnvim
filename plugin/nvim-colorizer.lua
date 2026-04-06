@@ -1,4 +1,7 @@
-vim.pack.add({ { src = "https://github.com/norcalli/nvim-colorizer.lua", name = "colorizer" } }, { load = function() end })
+vim.pack.add(
+	{ { src = "https://github.com/norcalli/nvim-colorizer.lua", name = "colorizer" } },
+	{ load = function() end }
+)
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	once = true,
