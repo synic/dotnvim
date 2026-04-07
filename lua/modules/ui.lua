@@ -1,5 +1,5 @@
 -- @diagnostic disable: inject-field
-local proj = require("modules.project")
+local proj = require("modules.projects")
 
 local notification_width = 70
 

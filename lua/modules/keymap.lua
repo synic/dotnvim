@@ -282,22 +282,22 @@ M.setup_basic_keymap = function()
 		{ "Q", "q", desc = "Start macro recording" },
 
 		-- projects
-		{ "<leader>p-", require("modules.project").goto_project_directory, desc = "Go to project directory" },
-		{ "<leader>lt", require("modules.project").new_tab_with_project, desc = "New layout with project" },
+		{ "<leader>p-", require("modules.projects").goto_project_directory, desc = "Go to project directory" },
+		{ "<leader>lt", require("modules.projects").new_tab_with_project, desc = "New layout with project" },
 		{
 			"<leader>*",
-			require("modules.project").search_project_cursor_term,
+			require("modules.projects").search_project_cursor_term,
 			desc = "Search project for term",
 			mode = { "n", "v" },
 		},
-		{ "<leader>sp", require("modules.project").search_project, desc = "Search project for text" },
-		{ "<leader>p/", require("modules.project").search_project, desc = "Search project for text" },
-		{ "<leader>pf", require("modules.project").find_project_files_smart, desc = "Find project file" },
-		{ "<leader>pg", require("modules.project").git_files, desc = "Find git files" },
-		{ "<leader>pp", require("modules.project").pick_project, desc = "Pick project" },
-		{ "<leader>pP", require("modules.project").switch_project, desc = "Switch project" },
-		{ "<leader>ph", require("modules.project").goto_project, desc = "Go to project home" },
-		{ "<leader>pS", require("modules.project").set_project, desc = "Set project home" },
+		{ "<leader>sp", require("modules.projects").search_project, desc = "Search project for text" },
+		{ "<leader>p/", require("modules.projects").search_project, desc = "Search project for text" },
+		{ "<leader>pf", require("modules.projects").find_project_files_smart, desc = "Find project file" },
+		{ "<leader>pg", require("modules.projects").git_files, desc = "Find git files" },
+		{ "<leader>pp", require("modules.projects").pick_project, desc = "Pick project" },
+		{ "<leader>pP", require("modules.projects").switch_project, desc = "Switch project" },
+		{ "<leader>ph", require("modules.projects").goto_project, desc = "Go to project home" },
+		{ "<leader>pS", require("modules.projects").set_project, desc = "Set project home" },
 		{ "<leader>pe", "<cmd>Pick explorer<cr>", desc = "Open file tree" },
 
 		-- file management
@@ -346,6 +346,19 @@ M.setup_basic_keymap = function()
 		{ "<localleader>j", "<cmd>lua require('treesj').split()<cr>", desc = "Split" },
 		{ "<localleader>J", "<cmd>lua require('treesj').join()<cr>", desc = "Join" },
 
+		-- visual editing
+		{ "<", "<gv", mode = { "v" }, desc = "Shift left and reselect" },
+		{ ">", ">gv", mode = { "v" }, desc = "Shift right and reselect" },
+		{
+			"p",
+			function()
+				return 'pgv"' .. vim.v.register .. "y`>"
+			end,
+			mode = { "x" },
+			expr = true,
+			desc = "Paste over selection without overwriting the register",
+		},
+
 		-- scm
 		{ "<leader>gb", "<cmd>Gitsigns blame_line<cr>", desc = "Git blame line" },
 		{ "<leader>gB", require("modules.scm").open_gitblame, desc = "Git blame file" },
@@ -355,6 +368,7 @@ M.setup_basic_keymap = function()
 		-- misc
 		{ "<leader>ss", "<cmd>lua require('snacks').picker.spelling()<cr>", desc = "Spelling suggestions" },
 		{ "vig", "ggVG", desc = "Select whole buffer" },
+		{ "yig", "ggVGy", desc = "Yank whole buffer" },
 		{ "<leader>xq", "<cmd>qa!<cr>", desc = "Quit Vim" },
 		{ "<leader>xx", require("modules.ui").close_all_floating_windows, desc = "Close all floating windows" },
 		{ "<leader>wM", require("modules.ui").zoom_toggle, desc = "Zoom window" },

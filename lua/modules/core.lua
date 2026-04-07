@@ -15,6 +15,7 @@ end
 ---@return nil
 function M.setup()
 	require("modules.options").setup()
+	require("modules.autocmds").setup()
 	require("modules.session").setup()
 
 	if vim.fn.filereadable(local_config_path) == 1 then

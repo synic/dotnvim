@@ -37,7 +37,7 @@ local notifier_ignore_messages = {
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
 		local config = require("modules.config")
-		local proj = require("modules.project")
+		local proj = require("modules.projects")
 		local snacks = require("snacks")
 		local a = require("snacks.picker.util").align
 		local fmt = require("snacks.picker.format")

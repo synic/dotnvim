@@ -1,4 +1,4 @@
-local proj = require("modules.project")
+local proj = require("modules.projects")
 
 ---@type PluginModule
 local M = {}

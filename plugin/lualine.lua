@@ -19,7 +19,7 @@ end
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	callback = function()
-		local proj = require("modules.project")
+		local proj = require("modules.projects")
 		local lualine_utils = require("lualine.utils.utils")
 
 		local function repo_name(_, is_focused)

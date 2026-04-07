@@ -29,7 +29,7 @@ function M.pick_undo()
 end
 
 M.dir_picker = function(dir, prompt, cb)
-	local proj = require("modules.project")
+	local proj = require("modules.projects")
 	local snacks = require("snacks")
 	local layouts = require("snacks.picker.config.layouts")
 	local entries = {}
