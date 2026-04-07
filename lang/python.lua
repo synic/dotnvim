@@ -18,7 +18,9 @@ end
 
 return {
 	servers = {
-		["ruff"] = { cmd = { "ruff" } },
+		["ruff"] = {
+			cmd = { "ruff", "server" },
+		},
 		["pyright"] = {
 			cmd = { "pyright" },
 			settings = {
