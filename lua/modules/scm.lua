@@ -64,7 +64,7 @@ function M.neogit_open()
 		end
 	end
 
-	neogit.open({ cwd = root })
+	neogit.open({ cwd = root, kind = "split" })
 end
 
 return M
