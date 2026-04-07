@@ -24,6 +24,7 @@ function M.setup()
 	end
 
 	require("modules.lsp").setup()
+	require("modules.usercmds").setup()
 
 	vim.api.nvim_create_autocmd("VimEnter", {
 		callback = function()

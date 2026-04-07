@@ -2,6 +2,8 @@ return {
 	treesitter = { "html", "css", "javascript", "typescript" },
 	servers = {
 		["emmet_language_server"] = {
+			cmd = { "emmet_language_server" },
+			mason_name = "emmet-language-server",
 			{
 				cmd = { "emmet-language-server", "--stdio" },
 				filetypes = {

@@ -3,6 +3,8 @@ return {
 	format_on_save = "nonels",
 	servers = {
 		["lua_ls"] = {
+			mason_name = "lua-language-server",
+			cmd = { "lua-language-server" },
 			settings = {
 				Lua = {
 					runtime = {

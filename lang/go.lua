@@ -3,6 +3,8 @@ return {
 	format_on_save = "nonels",
 	servers = {
 		["gopls"] = {
+			cmd = { "gopls" },
+			filetypes = { "go", "gomod" },
 			settings = {
 				gopls = {
 					buildFlags = { "-tags=debug,release,mage,tools" },

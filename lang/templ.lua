@@ -2,6 +2,6 @@ vim.filetype.add({ extension = { templ = "templ" } })
 
 return {
 	servers = {
-		["templ"] = {},
+		["templ"] = { cmd = { "templ" } },
 	},
 }

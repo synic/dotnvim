@@ -1,6 +1,8 @@
 return {
 	servers = {
 		["vimls"] = {
+			mason_name = "vim-language-server",
+			cmd = { "vim-language-server" },
 			init_options = {
 				isNeovim = true,
 				iskeyword = "@,48-57,_,192-255,-#",

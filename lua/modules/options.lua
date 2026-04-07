@@ -89,6 +89,9 @@ function M.setup()
 	vim.fn.mkdir(swapdir, "p") -- Ensure the swap directory exists before using it.
 	opt.dir = swapdir -- Point Neovim's swap file directory at the managed folder.
 
+	-- enable floating window for checkhealth
+	vim.g.health = { style = "float" }
+
 	-- macOS terminal locale fix: ensure UTF-8 locale is available when missing.
 	if vim.fn.has("macunix") == 1 and vim.env.LC_CTYPE == nil then
 		vim.env.LC_CTYPE = "en_US.UTF-8"

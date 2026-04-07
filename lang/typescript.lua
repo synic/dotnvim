@@ -7,6 +7,6 @@ return {
 		},
 	},
 	servers = {
-		["ts_ls"] = {},
+		["ts_ls"] = { mason_name = "typescript-language-server", cmd = { "typescript-language-server" } },
 	},
 }

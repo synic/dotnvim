@@ -2,6 +2,8 @@ return {
 	treesitter = { "css" },
 	servers = {
 		["tailwindcss"] = {
+			cmd = { "tailwindcss-language-server" },
+			mason_name = "tailwindcss-language-server",
 			settings = {
 				tailwindCSS = {
 					validate = true,

@@ -2,7 +2,6 @@ vim.pack.add({
 	"https://github.com/nvimtools/none-ls.nvim",
 	"https://github.com/davidmh/cspell.nvim",
 	"https://github.com/nvimtools/none-ls-extras.nvim",
-	"https://github.com/neovim/nvim-lspconfig",
 })
 
 local lsp = require("modules.lsp")

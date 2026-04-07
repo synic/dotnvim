@@ -237,8 +237,15 @@ function M.setup()
 					conf.use_mason = nil
 				end
 
+				local mason_name = conf.mason_name
+				conf.mason_name = nil
+
 				if use_mason then
-					M.mason_servers[#M.mason_servers + 1] = server
+					M.mason_servers[#M.mason_servers + 1] = mason_name or server
+				end
+
+				if not conf.filetypes then
+					conf.filetypes = def.treesitter or { def._lang }
 				end
 
 				vim.lsp.config[server] = conf

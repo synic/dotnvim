@@ -18,8 +18,9 @@ end
 
 return {
 	servers = {
-		["ruff"] = {},
+		["ruff"] = { cmd = { "ruff" } },
 		["pyright"] = {
+			cmd = { "pyright" },
 			settings = {
 				python = {
 					analysis = {
