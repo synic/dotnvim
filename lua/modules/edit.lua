@@ -43,4 +43,11 @@ function M.copy_normalized_block()
 	vim.notify("Copied normalized text to clipboard")
 end
 
+function M.get_path_with_line_info()
+	local pattern = "%p"
+	local path = vim.fn.expand(pattern)
+	local line = vim.fn.line(".")
+	return string.format("%s:%d", path, line)
+end
+
 return M

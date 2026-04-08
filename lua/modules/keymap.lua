@@ -1,5 +1,5 @@
 ---@alias KeymapOpts { buffer?: boolean|integer, desc?: string, expr?: boolean, mode?: string[]|string, silent?: boolean, test?: boolean }
----@alias Keymap { [1]: string, [2]: string|function, desc?: string, buffer?: boolean|integer, expr?: boolean, mode?: string[], silent?: boolean, test?: boolean|number }
+---@alias Keymap { [1]: string, [2]: string|function, desc?: string, buffer?: boolean|integer, expr?: boolean, mode?: string[]|string, silent?: boolean, test?: boolean|number }
 ---
 local get_help
 local M = {}
@@ -336,6 +336,170 @@ M.setup_basic_keymap = function()
 		-- treesitter
 		{ "<leader>t.", "<cmd>TSContextToggle<cr>", desc = "Toggle treesitter context" },
 
+		-- textobject selection
+		{
+			"ak",
+			function()
+				require("modules.textobjects").select("@block.outer")
+			end,
+			mode = { "x", "o" },
+			desc = "Around block",
+		},
+		{
+			"ik",
+			function()
+				require("modules.textobjects").select("@block.inner")
+			end,
+			mode = { "x", "o" },
+			desc = "Inside block",
+		},
+		{
+			"ac",
+			function()
+				require("modules.textobjects").select("@class.outer")
+			end,
+			mode = { "x", "o" },
+			desc = "Around class",
+		},
+		{
+			"ic",
+			function()
+				require("modules.textobjects").select("@class.inner")
+			end,
+			mode = { "x", "o" },
+			desc = "Inside class",
+		},
+		{
+			"a?",
+			function()
+				require("modules.textobjects").select("@conditional.outer")
+			end,
+			mode = { "x", "o" },
+			desc = "Around conditional",
+		},
+		{
+			"i?",
+			function()
+				require("modules.textobjects").select("@conditional.inner")
+			end,
+			mode = { "x", "o" },
+			desc = "Inside conditional",
+		},
+		{
+			"af",
+			function()
+				require("modules.textobjects").select("@function.outer")
+			end,
+			mode = { "x", "o" },
+			desc = "Around function",
+		},
+		{
+			"if",
+			function()
+				require("modules.textobjects").select("@function.inner")
+			end,
+			mode = { "x", "o" },
+			desc = "Inside function",
+		},
+		{
+			"al",
+			function()
+				require("modules.textobjects").select("@loop.outer")
+			end,
+			mode = { "x", "o" },
+			desc = "Around loop",
+		},
+		{
+			"il",
+			function()
+				require("modules.textobjects").select("@loop.inner")
+			end,
+			mode = { "x", "o" },
+			desc = "Inside loop",
+		},
+		{
+			"aa",
+			function()
+				require("modules.textobjects").select("@parameter.outer")
+			end,
+			mode = { "x", "o" },
+			desc = "Around argument",
+		},
+		{
+			"ia",
+			function()
+				require("modules.textobjects").select("@parameter.inner")
+			end,
+			mode = { "x", "o" },
+			desc = "Inside argument",
+		},
+
+		-- textobject movement
+		{
+			"]m",
+			function()
+				require("modules.textobjects").goto_next_start("@function.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Next function start",
+		},
+		{
+			"]]",
+			function()
+				require("modules.textobjects").goto_next_start("@class.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Next class start",
+		},
+		{
+			"]M",
+			function()
+				require("modules.textobjects").goto_next_end("@function.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Next function end",
+		},
+		{
+			"][",
+			function()
+				require("modules.textobjects").goto_next_end("@class.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Next class end",
+		},
+		{
+			"[m",
+			function()
+				require("modules.textobjects").goto_previous_start("@function.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Previous function start",
+		},
+		{
+			"[[",
+			function()
+				require("modules.textobjects").goto_previous_start("@class.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Previous class start",
+		},
+		{
+			"[M",
+			function()
+				require("modules.textobjects").goto_previous_end("@function.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Previous function end",
+		},
+		{
+			"[]",
+			function()
+				require("modules.textobjects").goto_previous_end("@class.outer")
+			end,
+			mode = { "n", "x", "o" },
+			desc = "Previous class end",
+		},
+
 		-- debugging
 		{ "<leader>e<leader>", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show error" },
 		{ "<leader>el", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", desc = "Toggle trouble" },
@@ -427,6 +591,7 @@ function M.add(keymap)
 			if right == nil then
 				print("ERROR: nil keymap for key: " .. tostring(left))
 				print("Key data:", vim.inspect(key_data))
+				goto continue
 			end
 
 			key_data[1] = nil
@@ -436,6 +601,7 @@ function M.add(keymap)
 				vim.keymap.set(m, left, right, key_data)
 			end
 		end
+		::continue::
 	end
 end
 

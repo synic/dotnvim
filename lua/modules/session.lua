@@ -50,6 +50,9 @@ end
 M.restore_session = function()
 	if vim.fn.filereadable(session_file) == 1 then
 		vim.cmd.source(session_file)
+		if vim.fn.filereadable(extra_session_file) == 1 then
+			vim.cmd.source(extra_session_file)
+		end
 	else
 		vim.notify("No session file found", vim.log.levels.ERROR)
 	end

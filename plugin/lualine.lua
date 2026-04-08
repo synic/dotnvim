@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			return lualine_utils.stl_escape(vim.fs.basename(path or ""))
 		end
 
-		return {
+		require("lualine").setup({
 			options = {
 				component_separators = "|",
 				-- section_separators = { left = "", right = "" },
@@ -59,6 +59,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 					{ "filename", file_status = true, path = 1 },
 				},
 			},
-		}
+		})
 	end,
 })

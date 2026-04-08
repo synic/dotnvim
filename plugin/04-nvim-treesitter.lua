@@ -51,68 +51,23 @@ vim.api.nvim_create_autocmd("VimEnter", {
 					node_decremental = "<bs>",
 				},
 			},
-			textobjects = {
-				select = {
-					enable = true,
-					lookahead = true,
-					-- Disabling for dart because it was causing a few seconds of delay when creating
-					-- a new line in the file.
-					-- https://github.com/UserNobody14/tree-sitter-dart/issues/48
-					-- https://github.com/UserNobody14/tree-sitter-dart/issues/46
-					-- https://github.com/nvim-treesitter/nvim-treesitter/issues/4945
-					disable = { "dart" },
-					keymaps = {
-						["ak"] = { query = "@block.outer", desc = "Around block" },
-						["ik"] = { query = "@block.inner", desc = "Inside block" },
-						["ac"] = { query = "@class.outer", desc = "Around class" },
-						["ic"] = { query = "@class.inner", desc = "Inside class" },
-						["a?"] = { query = "@conditional.outer", desc = "Around conditional" },
-						["i?"] = { query = "@conditional.inner", desc = "Inside conditional" },
-						["af"] = { query = "@function.outer", desc = "Around function" },
-						["if"] = { query = "@function.inner", desc = "Inside function" },
-						["al"] = { query = "@loop.outer", desc = "Around loop" },
-						["il"] = { query = "@loop.inner", desc = "Inside loop" },
-						["aa"] = { query = "@parameter.outer", desc = "Around argument" },
-						["ia"] = { query = "@parameter.inner", desc = "Inside argument" },
-					},
-					selection_modes = {
-						["@parameter.outer"] = "v", -- charwise
-						["@function.outer"] = "V", -- linewise
-						["@block.outer"] = "V",
-						["@conditional.outer"] = "V",
-						["@loop.outer"] = "V",
-						["@class.outer"] = "V", -- blockwise
-					},
-					include_surrounding_whitespace = false,
+		})
+
+		require("nvim-treesitter-textobjects").setup({
+			select = {
+				lookahead = true,
+				selection_modes = {
+					["@parameter.outer"] = "v", -- charwise
+					["@function.outer"] = "V", -- linewise
+					["@block.outer"] = "V",
+					["@conditional.outer"] = "V",
+					["@loop.outer"] = "V",
+					["@class.outer"] = "V", -- blockwise
 				},
-				move = {
-					enable = true,
-					set_jumps = true, -- whether to set jumps in the jumplist
-					goto_next_start = {
-						["]m"] = "@function.outer",
-						["]]"] = { query = "@class.outer", desc = "Next class start" },
-					},
-					goto_next_end = {
-						["]M"] = "@function.outer",
-						["]["] = "@class.outer",
-					},
-					goto_previous_start = {
-						["[m"] = "@function.outer",
-						["[["] = "@class.outer",
-					},
-					goto_previous_end = {
-						["[M"] = "@function.outer",
-						["[]"] = "@class.outer",
-					},
-				},
-				lsp_interop = {
-					enable = true,
-					border = "rounded",
-					peek_definition_code = {
-						["gF"] = "@function.outer",
-						["gC"] = "@class.outer",
-					},
-				},
+				include_surrounding_whitespace = false,
+			},
+			move = {
+				set_jumps = true,
 			},
 		})
 		require("nvim-treesitter").install(require("modules.lsp").langs)

@@ -275,6 +275,7 @@ function M.find_path_root(path)
 	root = vim.fs.root(path, config.options.projects.root_names)
 	root_cache[path] = root or -1
 
+	---@diagnostic disable-next-line: return-type-mismatch
 	return root
 end
 
