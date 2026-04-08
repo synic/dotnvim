@@ -82,6 +82,7 @@ M.setup_basic_keymap = function()
 		{ "<leader>w7", "<cmd>7windo norm! m'<cr>", desc = "Goto window #7" },
 		{ "<leader>w8", "<cmd>8windo norm! m'<cr>", desc = "Goto window #8" },
 		{ "<leader>w9", "<cmd>9windo norm! m'<cr>", desc = "Goto window #9" },
+		{ "<leader>w<leader>", require("modules.picker").pick_window, desc = "Pick window" },
 
 		-- layouts/tabs
 		{ "<leader>ln", "<cmd>tabnew<cr><cmd>set showtabline=1<cr>", desc = "New layout" },

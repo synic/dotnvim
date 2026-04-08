@@ -153,7 +153,10 @@ local function setup_on_attach_event(lang_defs)
 									return c.name == "null-ls"
 								end
 							end
-							vim.lsp.buf.format(format_opts)
+							local status, _ = pcall(vim.lsp.buf.format, format_opts)
+							if status ~= 1 then
+								vim.print("none-ls formatting failed")
+							end
 						end,
 					})
 				end

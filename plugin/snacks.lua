@@ -43,6 +43,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		local fmt = require("snacks.picker.format")
 
 		require("snacks").setup({
+			input = {},
 			picker = {
 				main = { current = true },
 				layout = { preset = "telescope" },
