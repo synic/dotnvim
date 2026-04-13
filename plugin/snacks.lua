@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		local a = require("snacks.picker.util").align
 		local fmt = require("snacks.picker.format")
 
-		require("snacks").setup({
+		snacks.setup({
 			input = {},
 			picker = {
 				main = { current = true },

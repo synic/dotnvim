@@ -24,6 +24,14 @@ function M.setup()
 		group = autoreload,
 		callback = checktime_if_idle,
 	})
+
+	-- enable ui2 after snacks dashboard is closed. For whatever reason, it looks wonky with ui2 enabled.
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "SnacksDashboardClosed",
+		callback = function()
+			require("vim._core.ui2").enable()
+		end,
+	})
 end
 
 return M

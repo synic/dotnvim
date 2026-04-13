@@ -12,7 +12,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
 		for source, args in pairs(lsp.nonels) do
 			if type(source) == "number" then
-				table.insert(nonels_sources, require("null-ls.builtins." .. args))
+				if type(args) == "function" then
+					table.insert(nonels_sources, args())
+				else
+					table.insert(nonels_sources, require("null-ls.builtins." .. args))
+				end
 			else
 				table.insert(nonels_sources, require("null-ls.builtins." .. source).with(args))
 			end

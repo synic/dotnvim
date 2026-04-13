@@ -272,6 +272,20 @@ function M.find_path_root(path)
 		return root
 	end
 
+	local best_match = nil
+	local best_len = 0
+	for _, entry_path in pairs(config.options.projects.entries) do
+		if vim.startswith(path, entry_path) and #entry_path > best_len then
+			best_match = entry_path
+			best_len = #entry_path
+		end
+	end
+
+	if best_match then
+		root_cache[path] = best_match
+		return best_match
+	end
+
 	root = vim.fs.root(path, config.options.projects.root_names)
 	root_cache[path] = root or -1
 
