@@ -1,10 +1,8 @@
 local setup_colors_group = vim.api.nvim_create_augroup("SetupColors", { clear = true })
 
----@type PluginModule
 local M = {}
 
 ---@param pattern string Pattern to match colorscheme name against
----@param cb ColorSchemeCallback Callback to run when colorscheme loads
 ---@return nil
 function M.on_colorscheme_load(pattern, cb)
 	cb()

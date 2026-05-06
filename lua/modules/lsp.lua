@@ -147,16 +147,13 @@ local function setup_on_attach_event(lang_defs)
 						group = lsp_formatting_group,
 						buffer = buf,
 						callback = function()
-							local format_opts = { bufnr = buf, timeout = 4000 }
+							local format_opts = { bufnr = buf, async = false }
 							if format_on_save == "nonels" then
 								format_opts.filter = function(c)
 									return c.name == "null-ls"
 								end
 							end
-							local status, _ = pcall(vim.lsp.buf.format, format_opts)
-							if status ~= 1 then
-								vim.print("none-ls formatting failed")
-							end
+							pcall(vim.lsp.buf.format, format_opts)
 						end,
 					})
 				end

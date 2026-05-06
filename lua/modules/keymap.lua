@@ -259,6 +259,7 @@ M.setup_basic_keymap = function()
 		{ "<leader>cm", require("modules.filesystem").goto_config_directory, desc = "Manage config" },
 		{ "<leader>cl", require("modules.ui").goto_lazy_dir, desc = "Go to lazy plugins dir" },
 		{ "<leader>cd", require("modules.ui").goto_dotfiles_dir, desc = "Go to dotfiles directory" },
+		{ "<leader>cp", "<cmd>lua vim.pack.update()<cr>", desc = "Plugin update" },
 
 		-- copy/paste on mac
 		{

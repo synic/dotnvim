@@ -34,7 +34,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		require("lualine").setup({
 			options = {
 				component_separators = "|",
-				-- section_separators = { left = "", right = "" },
 			},
 			sections = {
 				lualine_b = {

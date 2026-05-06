@@ -58,6 +58,4 @@ M.restore_session = function()
 	end
 end
 
-M.plugins = {}
-
 return M
