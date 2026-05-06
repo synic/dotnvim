@@ -153,7 +153,18 @@ local function setup_on_attach_event(lang_defs)
 									return c.name == "null-ls"
 								end
 							end
-							pcall(vim.lsp.buf.format, format_opts)
+							local clients = vim.lsp.get_clients({
+								bufnr = buf,
+								method = "textDocument/formatting",
+							})
+							if format_on_save == "nonels" then
+								clients = vim.tbl_filter(function(c)
+									return c.name == "null-ls"
+								end, clients)
+							end
+							if #clients > 0 then
+								pcall(vim.lsp.buf.format, format_opts)
+							end
 						end,
 					})
 				end
