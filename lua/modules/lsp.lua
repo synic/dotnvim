@@ -114,13 +114,17 @@ local function setup_on_attach_event(lang_defs)
 				{ "grw", picker.lsp_workspace_symbols, desc = "Workspace symbols", buffer = buf },
 				{
 					"g/",
-					"<cmd>vsplit<cr><cmd>lua require('snacks').picker.lsp_definitions()<cr>",
+					function()
+						picker.lsp_definitions({ confirm = "edit_vsplit" })
+					end,
 					desc = "Goto def in vsplit",
 					buffer = buf,
 				},
 				{
 					"g-",
-					"<cmd>split<cr><cmd>lua require('snacks').picker.lsp_definitions()<cr>",
+					function()
+						picker.lsp_definitions({ confirm = "edit_split" })
+					end,
 					desc = "Goto def in hsplit",
 					buffer = buf,
 				},
