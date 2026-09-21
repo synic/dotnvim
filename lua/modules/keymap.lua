@@ -279,10 +279,6 @@ M.setup_basic_keymap = function()
 			test = vim.fn.has("macunix"),
 		},
 
-		-- change the default key to start recording a macro from `q` to `Q`
-		{ "q", "<nop>", desc = "Disable macro recording with q" },
-		{ "Q", "q", desc = "Start macro recording" },
-
 		-- projects
 		{ "<leader>p-", require("modules.projects").goto_project_directory, desc = "Go to project directory" },
 		{ "<leader>lt", require("modules.projects").new_tab_with_project, desc = "New layout with project" },

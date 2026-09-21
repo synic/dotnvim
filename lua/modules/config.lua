@@ -16,8 +16,11 @@
 ---@field options { projects: ProjectConfig, appearance: AppearanceConfig, languages: string[], extra_languages: string[], lazy: LazyConfig }
 
 vim.o.shada = "!,'20,<50,s10,h"
-vim.opt.listchars:append("eol:↴")
-vim.opt.listchars:append("tab| ")
+vim.opt.listchars:append({
+  eol = "↴",
+  tab = "| ",
+})
+
 vim.o.winblend = 10
 vim.o.winborder = "single"
 vim.o.undofile = true
